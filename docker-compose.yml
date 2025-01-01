@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  # Service pour l'application Spring Boot
+  app:
+    build: .
+    image: api:1.0.1
+    ports:
+      - "9090:9090"  # Map le port 8080 de l'hôte vers le port 8080 du conteneur

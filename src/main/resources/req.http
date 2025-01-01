@@ -1,0 +1,5 @@
+GET localhost:9090/api/members?type=teacher
+
+
+### Get Specific teacher teacher
+GET localhost:9090/api/members?type=teacher&query=Car
