@@ -1,6 +1,11 @@
 package univ.orleans.fr.school.management.v2.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +23,24 @@ public class MemberController {
     private HashMap<String, List<Member>> membersMap = new HashMap<>();
     private boolean firstCall = true;
 
+
+    @Operation(
+            summary = "Récupère les membres en fonction du type et de la requête.",
+            description = "Permet de récupérer la liste des étudiants ou des enseignants. Vous pouvez aussi filtrer par un mot-clé dans la requête."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Liste des membres récupérée avec succès.",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "400", description = "Requête invalide (paramètre type manquant ou vide)."),
+            @ApiResponse(responseCode = "404", description = "Type de membre non trouvé.")
+    })
     @GetMapping("/members")
-    public ResponseEntity<List<?>> getMembers(@RequestParam String type, @RequestParam(required = false) String query) {
+    public ResponseEntity<List<?>> getMembers(
+            @Parameter(description = "Type de membre (student ou teacher).", required = true)
+            @RequestParam String type,
+            @Parameter(description = "Filtre optionnel pour rechercher par nom ou prénom.")
+            @RequestParam(required = false) String query
+    ) {
         if (firstCall) {
             students.addAll(generateStudents());
             teachers.addAll(generateTeachers());
