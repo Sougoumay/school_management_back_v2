@@ -34,5 +34,11 @@ COPY --from=build /app/target/*.jar app.jar
 # Exposer le port utilisé par Spring Boot (par défaut 8080)
 EXPOSE 8080
 
+# Créez un utilisateur non-root
+RUN useradd -m appuser
+
+# Utilisez cet utilisateur pour exécuter l'application
+USER appuser
+
 # Lancer l'application Spring Boot
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

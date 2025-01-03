@@ -14,12 +14,13 @@ resource "azurerm_linux_web_app" "web_app" {
 
   site_config {
     application_stack {
-      docker_image_name = "api:1.0.0"
+      docker_image_name = "api:1.0.1"
       docker_registry_url = "https://${var.container_registry_login_server}"
       docker_registry_username = var.container_registry_admin_username
       docker_registry_password = var.container_registry_admin_password
     }
   }
+
 
   app_settings = {
     "WEBSITES_CONTAINER_START_TIME_LIMIT" = "1800"
@@ -33,7 +34,7 @@ resource "azurerm_linux_web_app" "web_app" {
   }
 
   tags = {
-    environment = "production"
+    environment = "developpement"
   }
 }
 
@@ -58,11 +59,7 @@ resource "azurerm_static_web_app" "static_web_app" {
     type = "SystemAssigned"
   }
 
-  app_settings = {
-    "REACT_APP_API_URL" = azurerm_linux_web_app.web_app.default_hostname
-  }
-
   tags = {
-    environment = "production"
+    environment = "developpement"
   }
 }

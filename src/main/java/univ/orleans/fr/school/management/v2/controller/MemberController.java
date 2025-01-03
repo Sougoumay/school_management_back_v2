@@ -14,7 +14,7 @@ import univ.orleans.fr.school.management.v2.model.Member;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v2")
 @CrossOrigin("*")
 public class MemberController {
 
