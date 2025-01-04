@@ -44,20 +44,20 @@ jobs:
       # 3. Authentification à Azure avec az login
       - name: Log in to Azure
         run: |
-          az login --tenant ${{ secrets.AZURE_TENANT_ID }}
-          az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          az login --tenant ${{ secrets.AZURE_TENANT_ID_BIS }}
+          az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID_BIS }}
 
       # 4. Authentification à Azure Container Registry (ACR)
       - name: Log in to ACR
         run: |
-          az acr login --name acr3vcll099cdq7
+          az acr login --name acrznvpxi2x1hiq
 
       # 5. Construire l'image Docker
       - name: Build Docker image
         run: |
-          docker build -t acr3vcll099cdq7.azurecr.io/api:1.0.1 .
+          docker build -t acrznvpxi2x1hiq.azurecr.io/api:1.0.1 .
 
       # 6. Pousser l'image vers ACR
       - name: Push Docker image to ACR
         run: |
-          docker push acr3vcll099cdq7.azurecr.io/api:1.0.1
+          docker push acrznvpxi2x1hiq.azurecr.io/api:1.0.1
