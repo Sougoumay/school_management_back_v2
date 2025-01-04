@@ -24,6 +24,7 @@ resource "azurerm_linux_web_app" "web_app" {
 
   app_settings = {
     "WEBSITES_CONTAINER_START_TIME_LIMIT" = "1800"
+    "WEBSITES_PORT" = "9090"
 
     # Activation de l'intégration Application Insights
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.app_insights.instrumentation_key
