@@ -6,7 +6,7 @@ services:
     build: .
     image: api:1.0.1
     ports:
-      - "8080:8080"  # Map le port 8080 de l'hôte vers le port 8080 du conteneur
+      - "9090:9090"  # Map le port 9090 de l'hôte vers le port 9090 du conteneur
     read_only: true
     security_opt:
       - no-new-privileges:true
